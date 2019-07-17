@@ -33,7 +33,6 @@ void draw() /*called directly after setup() and continuously executes code in bl
 
     background(150, 150, 150); //sets the background of the processing window to Grey // (Red, Green, Blue)
     fill(115, 255, 248); //sets the color used to fill shapes onward // (R, G, B)
-    rect(100, 100, 50, 50); //draws a rectangle; origin is changed w/ rectMode() // (x, y, width, height)
 
     //drawFace(Face Index, Orientation, X, Y)
     //baseRotation(Face Index, CW as True/False, # of Rotations)
@@ -41,6 +40,9 @@ void draw() /*called directly after setup() and continuously executes code in bl
     //quarterRotate("face" (U, F, B', R', etc.), # of Rotations)
 
     drawFace(0, 0, window.trueCenterX + (8*window.tileSize), window.trueCenterY + (8*window.tileSize));
+    
+    //quarterRotate("D", 1);
+
     drawFace(0, 0, window.trueCenterX, window.trueCenterY); //UP
     drawFace(4, 3, window.trueCenterX + (4*window.tileSize), window.trueCenterY); //Right
     drawFace(1, 2, window.trueCenterX + (8*window.tileSize), window.trueCenterY); //Down (on the Right side)
@@ -190,9 +192,10 @@ void quarterRotate(string rotation,  int numRotations){
     tRbL[4] = 6; //Our final index will be the 'helper' array
     relSideOrder[4] = relSideOrder[0]; //Our final side will also be our first
 
+    baseRotation(index, !isPrime, numRotations);
+
     //Now, let's get started
     
-    baseRotation(index, isPrime, numRotations);
     for(; numRotations >= 1; numRotations--){   
         relSideCopy(tRbL[0], relSideOrder[0], 6, relSideOrder[0]); // ex: Right side of Top Face is copied to Right side of Nth Face
         
@@ -201,7 +204,6 @@ void quarterRotate(string rotation,  int numRotations){
         }
     };
 
- 
 
 }
 
